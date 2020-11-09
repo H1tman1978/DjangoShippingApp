@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% if latest_shipments_list %}
+    <ul>
+    {% for shipment in latest_shipments_list %}
+        <li><a href="{% url 'shipping:detail' shipment.id %}">{{ shipment.instruction_number }}</a> </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No shipments are available</p>
+{% endif %}

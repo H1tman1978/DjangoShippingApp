@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+<div class="title"><h1>Shipping Instruction: {{ shipment.instruction_number }}</h1></div>
+<div class="originating_address">
+    <h2>Ship From:</h2>
+    <p>Attention: {{ shipment.originating_address.attention_to }}</p>
+    <p>Company: {{ shipment.originating_address.company_name }}</p>
+    <p>Address:</p>
+    <p>{{ shipment.originating_address.address1 }}</p>
+    <p>{{ shipment.originating_address.address2 }}</p>
+    <p>{{ shipment.originating_address.city }},&nbsp;{{ shipment.originating_address.state }}&nbsp;&nbsp;{{ shipment.originating_address.postal_code }}</p>
+</div>
+<div class="ship_to_address">
+    <h2>Ship To:</h2>
+    <p>Attention: {{ shipment.ship_to_address.attention_to }}</p>
+    <p>Company: {{ shipment.ship_to_address.company_name }}</p>
+    <p>Address:</p>
+    <p>{{ shipment.ship_to_address.address1 }}</p>
+    <p>{{ shipment.ship_to_address.address2 }}</p>
+    <p>{{ shipment.ship_to_address.city }},&nbsp;{{ shipment.ship_to_address.state }}&nbsp;&nbsp;{{ shipment.ship_to_address.postal_code }}</p>
+</div>
+<div class="packages">
+{% if packages %}
+    {% for package in packages %}
+        <hr>
+        <h3>Package ID:  {{ package.case_number }}</h3>
+        <p>Type:  {{ package.type }}</p>
+        <p>Dimensions: {{ package.length }} x {{ package.width }} x {{ package.height }}</p>
+        <p>Weight: {{ package.weight }}</p>
+        <h4>Package Contents</h4>
+
+    {% endfor %}
+
+
+{% else %}
+    <p>No packages are linked to this shipment.</p>
+{% endif %}
+</div>
