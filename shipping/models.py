@@ -93,7 +93,7 @@ class Address(models.Model):
     saved_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
-        return f"<Address: {self.saved_name}>"
+        return f"{self.saved_name}"
 
 
 class Shipment(models.Model):
@@ -106,7 +106,7 @@ class Shipment(models.Model):
     has_shipped = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"<Shipment: {self.id}>"
+        return f"{self.instruction_number}"
 
 
 class Package(models.Model):
@@ -124,16 +124,13 @@ class Package(models.Model):
     width = models.IntegerField(blank=False, default=12)
     height = models.IntegerField(blank=False, default=12)
     weight = models.IntegerField(blank=False, default=10)
-    machine_type = models.CharField(max_length=5, blank=True, null=True)
-    model_number = models.CharField(max_length=5, blank=True, null=True)
-    machine_serial = models.CharField(max_length=25, blank=True, null=True)
     tracking_number = models.CharField(max_length=25, unique=True)
     carrier = models.CharField(max_length=50, default='UPS')
     shipment_id = models.ForeignKey(Shipment, on_delete=models.CASCADE)
     date_shipped = models.DateTimeField(default=timezone.now, blank=True, null=True)
 
     def __str__(self):
-        return f"<Package: {self.case_number}>"
+        return f"{self.case_number}"
 
 
 class Part(models.Model):
@@ -141,15 +138,18 @@ class Part(models.Model):
     part_number = models.CharField(max_length=15, blank=False)
     quantity = models.IntegerField(blank=False)
     description = models.CharField(max_length=50, blank=False)
+    package_id = models.ForeignKey(Package, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"<Part: {self.part_number}"
+        return f"{self.part_number}"
 
 
 class Machine(models.Model):
     machine_type = models.CharField(max_length=5, blank=True, null=True)
     model = models.CharField(max_length=15, blank=False)
     serial_number = models.CharField(max_length=50, blank=False)
+    description = models.CharField(max_length=50, blank=False)
+    package_id = models.ForeignKey(Package, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"<Machine: {self.machine_type}-{self.model}: {self.serial_number}"
+        return f"{self.machine_type}-{self.model}: {self.serial_number}"

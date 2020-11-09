@@ -1,16 +1,43 @@
-from django.shortcuts import render, get_object_or_404, get_list_or_404
-from django.http import Http404
-from .models import Shipment, Package
+from rest_framework import generics
+
+from .models import Shipment, Package, Part, Machine
+from .serializers import ShipmentSerializer, PackageSerializer, PartSerializer, MachineSerializer
+
+class ListShipment(generics.ListCreateAPIView):
+    queryset = Shipment.objects.all()
+    serializer_class = ShipmentSerializer
 
 
-# Create your views here.
-def index(request):
-    latest_shipments_list = Shipment.objects.order_by('-instruction_number')[:5]
-    context = {'latest_shipments_list': latest_shipments_list}
-    return render(request, 'shipping/index.html', context)
+class DetailShipment(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Shipment.objects.all()
+    serializer_class = ShipmentSerializer
 
 
-def detail(request, shipment_id):
-    shipment = get_object_or_404(Shipment, pk=shipment_id)
-    package_list = get_list_or_404(Package, shipment_id=shipment.id)
-    return render(request, 'shipping/details.html', {'shipment': shipment, 'packages': package_list})
+class ListPackage(generics.ListCreateAPIView):
+    queryset = Package.objects.all()
+    serializer_class = PackageSerializer
+
+
+class DetailPackage(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Package.objects.all()
+    serializer_class = PackageSerializer
+
+
+class ListPart(generics.ListCreateAPIView):
+    queryset = Part.objects.all()
+    serializer_class = PartSerializer
+
+
+class DetailPart(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Part.objects.all()
+    serializer_class = PartSerializer
+
+
+class ListMachine(generics.ListCreateAPIView):
+    queryset = Machine.objects.all()
+    serializer_class = MachineSerializer
+
+
+class DetailMachine(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Machine.objects.all()
+    serializer_class = MachineSerializer

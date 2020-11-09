@@ -38,9 +38,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shipping.apps.ShippingConfig',
+    'rest_framework',
+    'corsheaders'
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ]
+}
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware'
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -71,6 +81,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'shippingDjangoApp.wsgi.application'
 
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3000'
+)
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases

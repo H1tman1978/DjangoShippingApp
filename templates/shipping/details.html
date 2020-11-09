@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% block content %}
 <div class="title"><h1>Shipping Instruction: {{ shipment.instruction_number }}</h1></div>
 <div class="originating_address">
     <h2>Ship From:</h2>
@@ -36,3 +36,4 @@
     <p>No packages are linked to this shipment.</p>
 {% endif %}
 </div>
+{% endblock %}
