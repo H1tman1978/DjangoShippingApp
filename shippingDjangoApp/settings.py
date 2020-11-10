@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
+import os
 
 from pathlib import Path
 
@@ -39,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shipping.apps.ShippingConfig',
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
+    'easy_thumbnails',
+    'bootstrap4',
 ]
 
 REST_FRAMEWORK = {
@@ -82,8 +85,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'shippingDjangoApp.wsgi.application'
 
 CORS_ORIGIN_WHITELIST = (
-    'localhost:3000'
+    'localhost:3000',
 )
+
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -133,3 +137,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+

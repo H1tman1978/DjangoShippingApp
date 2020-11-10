@@ -3,6 +3,7 @@ from rest_framework import generics
 from .models import Shipment, Package, Part, Machine
 from .serializers import ShipmentSerializer, PackageSerializer, PartSerializer, MachineSerializer
 
+
 class ListShipment(generics.ListCreateAPIView):
     queryset = Shipment.objects.all()
     serializer_class = ShipmentSerializer

@@ -1,10 +1,17 @@
+{# Load the tag library #}
+{% load bootstrap4 %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"{% block meta %}{% endblock %}>
+    <title>Shipping App - {% block title %}{% endblock %}</title>
+    {# Load CSS and Javascript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
 </head>
 <body>
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
 {% block content %}
 
 {% endblock %}
