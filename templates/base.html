@@ -7,13 +7,22 @@
     <title>Shipping App - {% block title %}{% endblock %}</title>
     {# Load CSS and Javascript #}
     {% bootstrap_css %}
-    {% bootstrap_javascript jquery='full' %}
 </head>
 <body>
-{# Display django.contrib.messages as Bootstrap alerts #}
-{% bootstrap_messages %}
-{% block content %}
-
-{% endblock %}
+<div class="container">
+    <div class="row justify-content-center">
+        {# Display django.contrib.messages as Bootstrap alerts #}
+        {% bootstrap_messages %}
+        <div class="col-8">
+            <h1 class="mt-2">Austin Shipping App</h1>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
 </body>
+<script>
+    {% bootstrap_javascript jquery='full' %}
+    {% block script %}{% endblock %}
+</script>
 </html>

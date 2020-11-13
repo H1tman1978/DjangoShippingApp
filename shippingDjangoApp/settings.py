@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'easy_thumbnails',
     'bootstrap4',
+    'crispy_forms',
 ]
 
 REST_FRAMEWORK = {
@@ -87,6 +88,8 @@ WSGI_APPLICATION = 'shippingDjangoApp.wsgi.application'
 CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
 )
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 # Database

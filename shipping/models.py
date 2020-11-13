@@ -90,7 +90,7 @@ class Address(models.Model):
     state = models.CharField(max_length=2, choices=STATE_PROVINCE_CHOICES, default="TX", blank=False)
     postal_code = models.CharField(max_length=10, default="78758", blank=True, null=True)
     saved_name = models.CharField(max_length=30, blank=True, null=True)
-    saved_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return f"{self.saved_name}"
@@ -102,7 +102,7 @@ class Shipment(models.Model):
     has_chemicals = models.BooleanField(default=False)
     has_batteries = models.BooleanField(default=False)
     is_magnetized = models.BooleanField(default=False)
-    instruction_number = models.CharField(max_length=15, unique=True)  # Refers to Shipment Instruction Number
+    instruction_number = models.CharField(max_length=15, unique=True, blank=False)  # Refers to Shipment Instruction Number
     has_shipped = models.BooleanField(default=False)
 
     def __str__(self):
@@ -141,7 +141,7 @@ class Part(models.Model):
     package_id = models.ForeignKey(Package, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.part_number}"
+        return f"{self.quantity} x {self.part_number} - {self.description}"
 
 
 class Machine(models.Model):
